@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>User Dashboard</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="clearfix">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                      <img class="brand" alt="Brand" src="/img/brand.png" width="45px" height="45px">
+                    </a>
+                  <a class="navbar-brand dojo" href="/">Dashboard</a>
+                  <a class="navbar-brand dojo" href="/balance">Activities</a>
+                  <a class="navbar-brand dojo" href="/winnings">Winnings</a>
+                  <a class="navbar-brand dojo" href="/paid">Paid</a>
+                </div>
+                <ul class="nav nav-pills pull-right navbar-right">
+                    <li role="presentation"><a href="/logout" class="btn btn-info btn-lg active">Logout</a></li>
+                </ul>
+                <a class="navbar-brand dojo pull-right navbar-right" href="/">Welcome back <%= currentUser.name %></a>
+              </div>
+            </nav>
+        </div>
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="pull-left">Manage Users</h1>
+                        <ul class="nav nav-pills pull-right navbar-right">
+                            <li role="presentation"><a href="/user/new" class="btn btn-info btn-lg active">Add New User</a></li>
+                        </ul>
+                        <!-- with all the data we can then construct a more structured output -->
+
+
+                        <table class="table table-striped table-bordered table-hover" id="table_id">
+                          <thead>
+                            <tr>
+                              <th scope="col">UID</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Balance</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Actions</th>
+                          </tr>
+                          </thead>
+
+                              <tbody>
+                                <% for (user in allUsers) { %>
+                                    <tr>
+                                      <td><%= usersUID[user] %></td>
+                                      <td><%= allUsers[user].name %></td>
+                                      <td><a href="/user/<%= usersUID[user] %>">$ <%= allUsers[user].balance %>.00</a></td>
+                                      <td><%= allUsers[user].type.toUpperCase() %></td>
+                                      <td><%= allUsers[user].email %></td>
+                                      <td class="actions">
+                                          <form action='/user/<%= usersUID[user] %>' method='get'>
+                                              <input formaction="/user/<%= usersUID[user] %>" class="btn btn-info" type="submit" name = "edit" value="Edit">
+                                          </from>
+                                          <form action='/user/destroy/<%= usersUID[user] %>' method='get'>
+                                              <input formaction='/user/destroy/<%= usersUID[user] %>' class="btn btn-danger" type="submit" name="delete" value="Delete">
+                                          </form>
+                                      </td>
+                                    </tr>
+                                <% } %>
+                              </tbody>
+
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				<p>Made by Ramon Geronimo at <a href="http://linkedin.com/in/rgero215" target="_blank"><strong>RGERO215</strong></a></p>
+        			</div>
+
+        		</div>
+        	</div>
+        </footer>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html>

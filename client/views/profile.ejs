@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Profile</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="clearfix">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                      <img class="brand" alt="Brand" src="/img/brand.png" width="45px" height="45px">
+                    </a>
+                  <a class="navbar-brand dojo" href="/">Dashboard</a>
+                  <a class="navbar-brand dojo" href="/balance">Activities</a>
+                </div>
+                <ul class="nav nav-pills pull-right navbar-right">
+                    <li role="presentation"><a href="/" class="btn btn-info btn-lg active">Back</a></li>
+                </ul>
+                <a class="navbar-brand dojo pull-right navbar-right" href="/">Welcome back <%= currentUser.name %></a>
+              </div>
+            </nav>
+        </div>
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-5">
+                            <div class="form-box">
+                                <div class="form-top">
+                                    <div class="form-top-left">
+                                        <h3>Name:  <a><%= user.user.name %></a></h3>
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-info-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom">
+                                    <h3>Email:  <a><%= user.user.email %></a></h3>
+                                    <h3>Balance:  <a>$ <%= user.user.balance %>.00</a></h3>
+                                    <h3>Type:  <a><%= user.user.type.toUpperCase() %></a></h3>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-sm-1 middle-border"></div>
+                        <div class="col-sm-1"></div>
+
+                        <div class="col-sm-5">
+
+                            <div class="form-box">
+                                <div class="form-top">
+                                    <div class="form-top-left">
+                                        <h3>Update User</h3>
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom">
+                                    <form role="form" action="/user/update/<%= uid %>" method="post" class="login-form">
+
+                                        <div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">Name</label>
+				                        	<input type="text" name="name" value="<%= user.user.name %>" class="form-first-name form-control" id="form-first-name">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-last-name">Email</label>
+				                        	<input type="text" name="email" value="<%= user.user.email %>" class="form-last-name form-control" id="form-last-name">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-email">Balance</label>
+				                        	<input type="number" name="balance" value="0" class="email form-control" id="form-email">
+				                        </div>
+                                        <% if(type === 'admin') { %>
+                                        <div class="form-group">
+				                        	<label class="sr-only" for="form-last-name">Type</label>
+                                            <select class="form-last-name form-control" name="type">
+                                                <option value="<%= user.user.type %>"><%= user.user.type.toUpperCase()%> </option>
+                                                <option value="admin">ADMIN</option>
+                                                <option value="terminal">TERMINAL</option>
+                                                <option value="player">PLAYER</option>
+                                            </select>
+				                        	<!-- <input type="text" name="type" value="<%= user.user.type %>" class="form-last-name form-control" id="form-last-name"> -->
+				                        </div>
+                                        <% } else { %>
+                                            <input type="hidden" name="type" value="<%= user.user.type %>">
+                                        <% } %>
+                                        <button type="submit" class="btn">Update User</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="footer-border description_border"></div>
+
+                        <div class="col-sm-12">
+                            <div class="form-box">
+                                <div class="form-top">
+                                    <div class="form-top-left">
+                                        <h3>User's Statistics</h3>
+                                    </div>
+                                    <div class="form-top-right">
+                                        <i class="fa fa-bar-chart"></i>
+                                    </div>
+                                </div>
+                                <div class="form-bottom statistics">
+
+                                        <h4 class="stats">AB: <a><%= user.stats.atBat %></a> | </h4>
+                                        <h4 class="stats">AVG: <a><%= user.stats.avg %></a> | </h4>
+                                        <h4 class="stats">H: <a><%= user.stats.hits %></a> | </h4>
+                                        <h4 class="stats">RBI: <a><%= user.stats.rbi %></a> | </h4>
+                                        <h4 class="stats">SLG: <a><%= user.stats.slg %></a> | </h4>
+                                        <h4 class="stats">R: <a><%= user.stats.runs %></a> | </h4>
+                                        <h4 class="stats">LOB: <a><%= user.stats.lob %></a> | </h4>
+                                        <h4 class="stats">1B: <a><%= user.stats.singles %></a> | </h4>
+                                        <h4 class="stats">2B: <a><%= user.stats.doubles %></a> | </h4>
+                                        <h4 class="stats">3B: <a><%= user.stats.triples %></a> | </h4>
+                                        <h4 class="stats">HR: <a><%= user.stats.homeRuns %></a> | </h4>
+                                        <h4 class="stats">Points: <a><%= user.stats.points %></a></h4>
+
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				<p>Made by Ramon Geronimo at <a href="http://linkedin.com/in/rgero215" target="_blank"><strong>RGERO215</strong></a></p>
+        			</div>
+
+        		</div>
+        	</div>
+        </footer>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html>

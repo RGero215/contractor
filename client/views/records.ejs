@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>User Dashboard</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="clearfix">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                      <img class="brand" alt="Brand" src="/img/brand.png" width="45px" height="45px">
+                    </a>
+                  <a class="navbar-brand dojo" href="/">Dashboard</a>
+                  <a class="navbar-brand dojo" href="/baseball_cards">Baseball Cards</a>
+                </div>
+                <ul class="nav nav-pills pull-right navbar-right">
+                    <li role="presentation"><a href="/logout" class="btn btn-info btn-lg active">Logout</a></li>
+                </ul>
+                <a class="navbar-brand dojo pull-right navbar-right" href="/">Welcome back <%= currentUser.name %></a>
+              </div>
+            </nav>
+        </div>
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+
+                <div class="container">
+                    <div class="row">
+                        <h1 class="pull-left"><%= currentUser.name %> Records</h1>
+                        <!-- with all the data we can then construct a more structured output -->
+
+
+                        <table class="table table-striped table-bordered table-hover" id="table_records">
+                          <thead>
+                            <tr>
+                              <th scope="col">Date</th>
+                              <th scope="col">AB</th>
+                              <th scope="col">AVG</th>
+                              <th scope="col">H</th>
+                              <th scope="col">RBI</th>
+                              <th scope="col">SLG</th>
+                              <th scope="col">R</th>
+                              <th scope="col">LOB</th>
+                              <th scope="col">1B</th>
+                              <th scope="col">2B</th>
+                              <th scope="col">3B</th>
+                              <th scope="col">HR</th>
+                              <th scope="col">Points</th>
+                              <th scope="col">W/L</th>
+                              <th scope="col">Winnings</th>
+                            </tr>
+                          </thead>
+                              <tbody>
+                                  <% for (index in records) { %>
+                                      <% console.log(records) %>
+                                    <tr>
+                                          <td><%= records[index].createdAt %></td>
+                                          <td><%= records[index].atBat %></td>
+                                          <td><%= records[index].avg %></td>
+                                          <td><%= records[index].hits %></td>
+                                          <td><%= records[index].rbi %></td>
+                                          <td><%= records[index].slg %></td>
+                                          <td><%= records[index].runs %></td>
+                                          <td><%= records[index].lob %></td>
+                                          <td><%= records[index].singles %></td>
+                                          <td><%= records[index].doubles %></td>
+                                          <td><%= records[index].triples %></td>
+                                          <td><%= records[index].homeRuns %></td>
+                                          <td><%= records[index].points %></td>
+                                          <td><%= records[index].result %></td>
+                                          <td><%= records[index].winnings %></td>
+                                    </tr>
+                                    <% } %>
+                              </tbody>
+                              <tfoot align="right">
+                        	    	<tr>
+                                        <th></th>
+                                        <th><%= overall.atBat %></th>
+                                        <th><%= overall.avg %></th>
+                                        <th><%= overall.hits %></th>
+                                        <th><%= overall.rbi %></th>
+                                        <th><%= overall.slg %></th>
+                                        <th><%= overall.runs %></th>
+                                        <th><%= overall.lob %></th>
+                                        <th><%= overall.singles %></th>
+                                        <th><%= overall.doubles %></th>
+                                        <th><%= overall.triples %></th>
+                                        <th><%= overall.homeRuns %></th>
+                                        <th><%= overall.points %></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                        	 </tfoot>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				<p>Made by Ramon Geronimo at <a href="http://linkedin.com/in/rgero215" target="_blank"><strong>RGERO215</strong></a></p>
+        			</div>
+
+        		</div>
+        	</div>
+        </footer>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-firestore.js"></script>
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Challenge</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/form-elements.css">
+    
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+    <body class="<%= record.home %>">
+        <div class="clearfix">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">
+                            <img class="brand" alt="Brand" src="/img/brand.png" width="45px" height="45px">
+                            </a>
+                        <a class="navbar-brand dojo" href="/">Dashboard</a>
+                        <a class="navbar-brand dojo" href="/baseball_cards">Baseball Cards</a>
+                        </div>
+                        <ul class="nav nav-pills pull-right navbar-right">
+                            <li role="presentation"><a href="/logout" class="btn btn-info btn-lg active">Logout</a></li>
+                        </ul>
+                        <a class="navbar-brand dojo pull-right navbar-right" href="/">Welcome back <%= currentUser.name %></a>
+                    </div>
+                </nav>
+        </div>
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="score">
+                        <h1><%= record.home %> : <%= record.runs %></h1>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+        
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
+        <script>
+            var url = window.location.href
+            // var text = 'Challenge'
+            // var image = 'https://firebasestorage.googleapis.com/v0/b/react-4af11.appspot.com/o/images%2Fbaseball_card%2FyOk39ZD2pDhDvZYc8LQZum81vx12%2F2018-01-28T07:23:41Z.jpg?alt=media&token=a556b9e5-20aa-4600-99d2-6d5a303f58f4'
+            
+
+            // shareFacebook(url, text, image)
+            // function shareFacebook(url, text, image) {
+            //     open('http://facebook.com/sharer.php?s=100&p[url]=' + image + '&p[images][0]=' + image + '&p[title]=' + text, 'fbshare', 'height=380,width=660,resizable=0,toolbar=0,menubar=0,status=0,location=0,scrollbars=0');
+            // }
+        </script>
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>User Login</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+        
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="clearfix">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                      <img class="brand" alt="Brand" src="/img/brand.png" width="45px" height="45px">
+                    </a>
+                  <a class="navbar-brand dojo" href="/">Dashboard</a>
+                  <a class="navbar-brand dojo" href="/baseball_cards">Baseball Cards</a>
+                </div>
+                <ul class="nav nav-pills pull-right navbar-right">
+                    <li role="presentation"><a href="/logout" class="btn btn-info btn-lg active">Logout</a></li>
+                </ul>
+                <a class="navbar-brand dojo pull-right navbar-right" href="/">Welcome back <%= currentUser.name %></a>
+              </div>
+            </nav>
+        </div>
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+
+                    <div class="row">
+
+
+
+                            <% for (images of baseball_cards) { %>
+
+                                <div  class="card gallery_product "> 
+                                    <div class="front"> 
+                                            <img src="<%= images.image_url %>" alt="" class="img-responsive modal_image">
+                                    </div> 
+                                    <div class="back">
+                                        <h4><%= images.status %>: <a><%= images.amount %></a></h4><br><br><br>
+                                        <!-- <form>
+                                            <button formaction="/challenge/<%= images.UID %>/<%= images.recordUID %>" class="btn btn-primary col-lg-12">Challenge</button>
+                                            
+                                        </form><br>
+                                        <form >
+                                                <button class="btn btn-danger col-lg-12">Share</button>
+                                        </form> -->
+                                    </div> 
+                                </div>
+
+                                <!-- <div class="gallery_product col-lg-2 col-md-2 col-sm-2 col-xs-3 filter hdpe">
+                                    
+                                
+                                </div> -->
+                                <!-- The Modal -->
+                                <!-- <div id="myModal" class="modal"> -->
+
+                                        <!-- The Close Button -->
+                                        <!-- <span class="close">&times;</span> -->
+                                    
+                                        <!-- Modal Content (The Image) -->
+                                        <!-- <img class="modal-content" id="img01"> -->
+                                    
+                                        <!-- Modal Caption (Image Text) -->
+                                        <!-- <div id="caption"></div> -->
+                                <!-- </div> -->
+
+
+
+                            <% } %>
+
+                            
+                    </div>
+
+    
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        	<div class="container">
+        		<div class="row">
+
+        			<div class="col-sm-8 col-sm-offset-2">
+        				<div class="footer-border"></div>
+        				<p>Made by Ramon Geronimo at <a href="http://linkedin.com/in/rgero215" target="_blank"><strong>RGERO215</strong></a></p>
+        			</div>
+
+        		</div>
+        	</div>
+        </footer>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <!-- Javascript -->
+        <!-- <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script> -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/flip.js"></script>
+        <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+        <script>
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+            // Get the image and insert it inside the modal - use its "alt" text as a cap
+            var img = document.getElementsByClassName('modal_image');
+            for(var i=0; i<img.length; i++){
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img[i].addEventListener('click',function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            })
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+        </script>
+        
+        
+
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html>
