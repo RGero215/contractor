@@ -1,6 +1,9 @@
 {
   "name": "users",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.12.0"
+  },
   "main": "server.js",
   "dependencies": {
     "alert-node": "^0.2.1",
