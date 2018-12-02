@@ -26,5 +26,5 @@ var server = app.listen(port, () => {
  
 
 // require the mongoose configuration file which does the rest for us
-require('./server/config/mongoose.js');
+// require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app,server);
